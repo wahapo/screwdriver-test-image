@@ -10,9 +10,11 @@ jobs:
             - init: |
                 date -u +"%Y%m%d-%H%M%S" > VERSION
                 docker login --username $DOCKER_REGISTRY_USER --password $DOCKER_REGISTRY_TOKEN
+                sleep 2
                 mkdir -p ~/.docker/cli-plugins/
                 wget https://github.com/docker/buildx/releases/download/v0.7.1/buildx-v0.7.1.linux-amd64 -O ~/.docker/cli-plugins/docker-buildx
                 chmod a+x ~/.docker/cli-plugins/docker-buildx
+                sleep 2
                 docker buildx create --name mybuilder --use
                 docker buildx inspect --bootstrap
             - build: |
