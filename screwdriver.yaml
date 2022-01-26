@@ -4,7 +4,7 @@ shared:
 
 jobs:
     docker-publish:
-        requires: commit
+        requires: ~commit
         template: sd/dind@latest
         steps:
             - init: |
