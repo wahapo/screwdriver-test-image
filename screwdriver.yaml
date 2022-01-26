@@ -9,6 +9,7 @@ jobs:
         steps:
             - init: |
                 date -u +"%Y%m%d-%H%M%S" > VERSION
+                sleep 2
                 docker login --username $DOCKER_REGISTRY_USER --password $DOCKER_REGISTRY_TOKEN
                 sleep 2
                 mkdir -p ~/.docker/cli-plugins/
