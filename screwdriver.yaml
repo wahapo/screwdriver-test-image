@@ -1,0 +1,12 @@
+shared:
+    environment:
+        DOCKER_REPO: wahapo/screwdriver-test
+
+jobs:
+    docker-publish:
+        requires: commit
+        template: sd/dind@latest
+        steps:
+            - init: |
+                date -u +"%Y%m%d-%H%M%S" > VERSION
+                docker login --username $DOCKER_REGISTRY_USER --password $DOCKER_REGISTRY_TOKEN
