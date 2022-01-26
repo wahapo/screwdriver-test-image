@@ -21,6 +21,8 @@ jobs:
                 docker buildx inspect --bootstrap
                 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
             - build: |
-                docker buildx build --platform linux/arm64 --push -t $DOCKER_REPO:latest .
+                DOCKER_TAG=`cat VERSION`
+                docker buildx build --platform linux/amd64,linux/arm64 --push -t $DOCKER_REPO:latest .
+                docker tag $DOCKER_REPO:latest $DOCKER_REPO:$DOCKER_TAG
             - publish: |
                 echo "skip"
